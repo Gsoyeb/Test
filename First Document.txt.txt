@@ -1,0 +1,62 @@
+SELECT TOP (1000) [DriverID]
+      ,[CallSign]
+      ,[Name]
+      ,[VehicleRegistration]
+      ,[Mobile]
+      ,[VehicleTypeCode]
+      ,[CurrFillUnits]
+      ,[Latitude]
+      ,[Longitude]
+      ,[GroupID]
+      ,[DriverWeekIncome]
+      ,[Busy]
+      ,[Speed]
+      ,[LocDT]
+      ,[LocID]
+      ,[IsTracking]
+  FROM [CrownSDS_LIVE].[dbo].[Utility_DriverLastLocation]
+  where CallSign = 'UB01'
+
+
+    SELECT ID FROM Driver WHERE CallSign = 'UB01'
+
+	  SELECT TOP (1000) [LocID]
+      ,[Latitude]
+      ,[Longitude]
+      ,[DriverID]
+      ,[LocDT]
+      ,[Speed]
+      ,[SpeedCal]
+  FROM [CrownSDS_LIVE].[dbo].[DriverLocation]
+  where DriverID = 270
+  order by LocDT desc
+
+    SELECT TOP (1000) [EVENTID]
+      ,[DRIVERID]
+      ,[CALLSIGN]
+      ,[ETYPE]
+      ,[ETEXT]
+      ,[EFILE]
+      ,[ELATLONG]
+      ,[EDT]
+      ,[EFILECONTENT]
+      ,[EJobID]
+      ,[EJobItemID]
+      ,[CommsSentCustomer]
+      ,[ESource]
+      ,[IsDeleted]
+      ,[ImageProcessed]
+  FROM [CrownSDS_LIVE].[dbo].[EVENT]
+  where CALLSIGN = 'UB01'
+
+
+
+USE [CrownSDS_LIVE]
+GO
+DECLARE	@return_value int
+EXEC	@return_value = [dbo].[webJobDriverInspection]
+		@JobId = 5030535
+SELECT	'Return Value' = @return_value
+GO
+
+
